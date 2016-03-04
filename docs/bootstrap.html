@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>angular.simpleDatatable | bootstrap demo</title>
+        <link rel="stylesheet" href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+        <style>
+            body {}
+            table td,
+            table th {
+                vertical-align: middle;
+                text-align: center;
+            }
+            table td img {
+                width: 48px;
+                height: 48px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid p-t-3 p-l-3 p-r-3 p-b-3" ng-controller="ListCtrl">
+            <div simple-datatable ng-model="list" sdt-row-id="id" sdt-action-col="sdtActionCol" sdt-per-page="{{sdtPerPage}}" sdt-on="sdtOn" sdt-selected="sdtSelected" sdt-keep-selected="sdtKeepSelected">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    每页显示
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#" ng-click="sdtPerPage = 10">10</a>
+                                    <a class="dropdown-item" href="#" ng-click="sdtPerPage = 20">20</a>
+                                    <a class="dropdown-item" href="#" ng-click="sdtPerPage = 100">100</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="btn-groups btn-groups-sm">
+                            <div class="btn btn-primary" ng-click="selectAll()" ng-disabled="sdtSelected.length === 0">select all</div>
+                            <div class="btn btn-warning" ng-click="clearSelect()">unselect all</div>
+                            <div class="btn btn-warning" ng-click="changeActionCol()">change operation</div>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" sdt-search-input>
+                            <span class="input-group-addon" sdt-search-btn>
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th sdt-col="?" sdt-col-type="selectbox" class="">#</th>
+                                    <th sdt-col="id">id</th>
+                                    <th sdt-col="img" sdt-col-type="img">img</th>
+                                    <th sdt-col="string">name</th>
+                                    <th sdt-col="time" sdt-col-type="date">time</th>
+                                    <th sdt-col="time" sdt-col-type="datetime">time</th>
+                                    <th sdt-col="bool" sdt-col-type="bool" sdt-bool-true="yes" sdt-bool-false="no">bool</th>
+                                    <th style="width: 160px;">operation</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="clearfix text-md-center" style="position:relative;">
+                    <span class="pull-left">共<span sdt-total-label></span>条
+                        <span sdt-total-page></span>页 第<span sdt-page></span>页</span>
+
+                    <div class="input-group" style="width: 160px; position:absolute; left: 50%; margin-left: -80px;">
+                        <input type="text" class="form-control" sdt-page-input>
+                        <span class="input-group-addon" sdt-page-btn>
+                            <span sdt-page></span>/ <span sdt-total-page></span>
+                        </span>
+                        <span class="input-group-addon" sdt-page-btn>
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </div>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" sdt-prev-btn>上一页</button>
+                        <button type="button" class="btn btn-default" sdt-next-btn>下一页</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/x-handlebars-template" id="row-btn-1">
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-primary" sdt-row-click="myClickEvent">click</button>
+                    <button type="button" class="btn btn-danger" sdt-row-click="remove">remove</button>
+                </div>
+            </td>
+
+        </script>
+        <script type="text/x-handlebars-template" id="row-btn-2">
+            <td>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-danger" sdt-row-click="remove, extraParam1, extraParam2">removeEx</button>
+                </div>
+            </td>
+        </script>
+        <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://cdn.staticfile.org/angular.js/1.5.0-rc.0/angular.min.js"></script>
+        <script type="text/javascript" src="../lib/angular.simple-datatables.js"></script>
+        <script type="text/javascript" src="./js/global.js"></script>
+        <script type="text/javascript" src="./js/data.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.js"></script>
+    </body>
+</html>

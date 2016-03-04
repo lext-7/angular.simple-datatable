@@ -1,0 +1,19 @@
+{
+  "name": "angular.simple-datatable",
+  "version": "1.0.1",
+  "description": "simple data table for angular",
+  "main": "./lib/angular.simple-datatables.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lext-7/angular.simple-datatable.git"
+  },
+  "keywords": [
+    "datatable",
+    "angular"
+  ],
+  "author": "lext",
+  "license": "ISC"
+}

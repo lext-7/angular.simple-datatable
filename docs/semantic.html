@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>angular.simpleDatatable | bootstrap demo</title>
+        <link rel="stylesheet" href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://cdn.staticfile.org/semantic-ui/2.1.6/semantic.min.css" media="screen" title="no title" charset="utf-8">
+        <style>
+            body {}
+            table td,
+            table th {
+                vertical-align: middle;
+                text-align: center !important;
+            }
+            table td img {
+                width: 48px;
+                height: 48px;
+            }
+            .am-fl { float: left;}
+            .am-fr {float: right;}
+            .am-cf:after { content: ''; display: table; clear: both;}
+        </style>
+    </head>
+    <body>
+        <div class="ui container" style="margin-top: 40px; margin-bottom: 40px;" ng-controller="ListCtrl">
+            <div simple-datatable ng-model="list" sdt-row-id="id" sdt-action-col="sdtActionCol" sdt-per-page="{{sdtPerPage}}" sdt-on="sdtOn" sdt-selected="sdtSelected" sdt-keep-selected="sdtKeepSelected">
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <div class="ui floating labeled icon button dropdown">
+                            <i class="filter icon"></i>
+                            <span class="text zh">10</span>
+                            <div class="menu">
+                                <div class="header">
+                                    <i class="tags icon zh"></i>
+                                    每页显示
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item active">
+                                    10
+                                </div>
+                                <div class="item">
+                                    25
+                                </div>
+                                <div class="item">
+                                    50
+                                </div>
+                                <div class="item">
+                                    100
+                                </div>
+                                <div class="item" data-value="all">
+                                    全部
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eight wide column">
+                        <div class="ui primary button" ng-click="selectAll()" ng-disabled="sdtSelected.length === 0">select all</div>
+                        <div class="ui warning button" ng-click="clearSelect()">unselect all</div>
+                        <div class="ui info button" ng-click="changeActionCol()">change operation</div>
+
+                    </div>
+                    <div class="four wide column">
+                        <div class="ui action input">
+                            <input type="search" placeholder="Search..." sdt-search-input>
+                            <button class="ui icon button" sdt-search-btn>
+                                <i class="search icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui grid">
+                    <div class="column">
+                        <table class="ui selectable celled striped table">
+                            <thead>
+                                <tr>
+                                    <th sdt-col="?" sdt-col-type="selectbox" class="">#</th>
+                                    <th sdt-col="id">id</th>
+                                    <th sdt-col="img" sdt-col-type="img">img</th>
+                                    <th sdt-col="string">name</th>
+                                    <th sdt-col="time" sdt-col-type="date">time</th>
+                                    <th sdt-col="time" sdt-col-type="datetime">time</th>
+                                    <th sdt-col="bool" sdt-col-type="bool" sdt-bool-true="yes" sdt-bool-false="no">bool</th>
+                                    <th style="width: 160px;">operation</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="am-cf " style="text-align: center; margin-top: 18px;">
+                    <div class="ui label am-fl">共<div class="detail" sdt-total-label></div>
+                    </div>
+                    <div class="ui mini action input" style="position: absolute;">
+                        <input type="text" style="width: 98px;" sdt-page-input min="1">
+                        <button class="ui right labeled icon button" sdt-page-btn>
+                            <i class="right arrow icon"></i>
+                            <span sdt-total-page></span>
+                        </button>
+                    </div>
+                    <div class="am-fr">
+                        <button class="ui small left labeled icon button" sdt-prev-btn>
+                            <i class="left arrow icon"></i>Prev</button>
+                        <button class="ui small right labeled icon button" sdt-next-btn>
+                            <i class="right arrow icon"></i>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/x-handlebars-template" id="row-btn-1">
+            <td>
+                <button type="button" class="ui primary mini button" sdt-row-click="myClickEvent">click</button>
+                <button type="button" class="ui red mini button" sdt-row-click="remove">remove</button>
+
+            </td>
+
+        </script>
+        <script type="text/x-handlebars-template" id="row-btn-2">
+            <td>
+                <button type="button" class="ui red mini button" sdt-row-click="remove, extraParam1, extraParam2">removeEx</button>
+            </td>
+        </script>
+        <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cdn.staticfile.org/semantic-ui/2.1.6/semantic.min.js"></script>
+        <script type="text/javascript" src="http://cdn.staticfile.org/angular.js/1.5.0-rc.0/angular.min.js"></script>
+        <script type="text/javascript" src="../lib/angular.simple-datatables.js"></script>
+        <script type="text/javascript" src="./js/global.js"></script>
+        <script type="text/javascript" src="./js/data.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.js"></script>
+        <script>
+            $(function () {
+                $('.dropdown').dropdown();
+            });
+        </script>
+    </body>
+</html>
